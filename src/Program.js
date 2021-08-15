@@ -393,7 +393,7 @@ class Program {
         let icb = cmapSize; // key color index in a color bar
         let odd_line = false;
 
-        let all = `t = \t${this._t}\t\t[s]\n\n`;
+        let all = `t = ${this._t.toExponential(3)} [s]\n\n`;
 
         // 2D loop over console symbol positions
         for (let py = 0; py < this._conH; py++) {
@@ -420,18 +420,18 @@ class Program {
             // draw color bar
             if (odd_line) {
                 if (icb >= 0) {
-                    let n1 = cmap[icb];
-                    let n2 = (fmin + (fmax - fmin) *  icb / (cmapSize - 1.0));
-                    row += `\t|${n1}|\t${n2}`;
+                    let dataColor = cmap[icb];
+                    let dataValue = (fmin + (fmax - fmin) *  icb / (cmapSize - 1.0)).toExponential(3);
+                    row += ` |${dataColor}| ${dataValue}`;
                 } else {
-                    row += "\t| |\t";
+                    row += " | |\t";
                 }
                 icb--;
             } else {
                 if (py === 0) {
-                    row += `\t \t${title}`;
+                    row += ` ${title}`;
                 } else {
-                    row += "\t| |\t";
+                    row += " | |\t";
                 }
             }
 
