@@ -17,6 +17,7 @@
 body {
     background-color: black;
     color: white;
+    font-size: 10px;
     font-family: Monospaced, monospace;
     padding: 20px;
 }

@@ -16,7 +16,7 @@
 
 let app;
 let frame = 0;
-const w = 2.5e2;
+const w = 5e2; // velocity direction change frequency [1/s]
 
 /**
  * Main entry point
