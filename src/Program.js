@@ -66,10 +66,6 @@ class Program {
         this.#init_fields();
     }
 
-    get dt() {
-        return this._dt;
-    }
-
     /**
      * Init the u, v, p fields
      */
@@ -340,7 +336,7 @@ class Program {
         let fn;
 
         // colormap in ascending order
-        let cmap = [" ", "\u2591", "\u2592", "\u2593", "\u2588"]; // unicode
+        let cmap = ["\u2591", "\u2592", "\u2593", "\u2588"]; // unicode
 
         let cmapSize = cmap.length - 1;
 

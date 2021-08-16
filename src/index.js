@@ -14,9 +14,9 @@
  limitations under the License.
  */
 
-// globals
 let app;
-const w = 2e2; // velocity direction change frequency [1/s]
+let frame = 0;
+const w = 5e2; // velocity direction change frequency [1/s]
 
 /**
  * Main entry point
@@ -49,13 +49,12 @@ function onEnterFrame(app) {
 
         app.draw_field(app._umag, "u [m/s]");
 
-        // set velocity vector magnitude and direction on the top side of the cavity
         let u_posy = app.umax * Math.cos(w * app.t);
 
         app.solve(u_posy);
 
         // next step
-        app.t += app.dt;
+        app.t += app._dt;
     } else {
         app.WriteLine("End");
     }
