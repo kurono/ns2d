@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2021 Ilya Tsivilskiy @Kei https://github.com/kurono
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,12 +25,9 @@ const w = 5e2; // velocity direction change frequency [1/s]
 function Main() {
     // Ctrl + Alt + L -> auto-format
 
-    app = new Program();
+    app = new Program("consoleDiv");
 
     console.log("Start");
-
-    // init u, v, p
-    app.init_fields();
 
     // start the simulation
     onEnterFrame(app);
@@ -44,29 +41,20 @@ function onEnterFrame(app) {
     requestAnimationFrame(function() { onEnterFrame(app); });
 
     // time loop
-    if (app._t < app._tmax)
+    if (app.t < app.tmax)
     {
-        //if (frame === 0)
-        //{
-            app.clear_console();
+        app.clear_console();
 
-            app.compute_umag();
+        app.compute_umag();
 
-            app.draw_field(app._umag, "u [m/s]");
-        //}
+        app.draw_field(app._umag, "u [m/s]");
 
-        let u_posy = app._umax * Math.cos(w * app._t);
+        let u_posy = app.umax * Math.cos(w * app.t);
 
         app.solve(u_posy);
 
         // next step
-        app._t += app._dt;
-
-        /*frame++;
-        if (frame > app._skip_frames)
-        {
-            frame = 0;
-        }*/
+        app.t += app._dt;
     } else {
         app.WriteLine("End");
     }
