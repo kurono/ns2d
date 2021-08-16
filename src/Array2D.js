@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2021 Ilya Tsivilskiy @Kei https://github.com/kurono
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,27 +14,29 @@
  limitations under the License.
  */
 
-class Array2D {
+/**
+ * Represents 2D array of numbers
+ */
+class Array2D extends Array {
     constructor(rows, cols, defaultValue = 0.0) {
+        super();
         this.rows = rows;
         this.cols = cols;
         this.#fillData(defaultValue);
     }
 
     // private fields and methods start from #
-    // It is need to use object instead of arrays
-    // in order to be able to be passed by reference
     #fillData(defaultValue) {
         let mx = [];
 
         // loop over rows
         for (let r = 0; r < this.rows; r++) {
             // loop over cols
-            let row = {};
+            let row = [];
             for (let c = 0; c < this.cols; c++) {
-                row[c] = defaultValue; // append a value
+                row.push(defaultValue); // append a value
             }
-            this[r] = row;
+            this.push(row);
         }
 
         return mx;
@@ -53,27 +55,11 @@ class Array2D {
     }
 
     get min() {
-        let v = this[0][0];
-
-        for (let iy = 0; iy < this.rows; iy++) {
-            for (let ix = 0; ix < this.cols; ix++) {
-                v = (this[iy][ix] < v) ? this[iy][ix] : v;
-            }
-        }
-
-        return v;
+        return Math.min.apply(this, this.flat());
     }
 
     get max() {
-        let v = this[0][0];
-
-        for (let iy = 0; iy < this.rows; iy++) {
-            for (let ix = 0; ix < this.cols; ix++) {
-                v = (this[iy][ix] > v) ? this[iy][ix] : v;
-            }
-        }
-
-        return v;
+        return Math.max.apply(this, this.flat());
     }
 
 }
