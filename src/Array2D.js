@@ -22,11 +22,11 @@ class Array2D extends Array {
         super();
         this.rows = rows;
         this.cols = cols;
-        this.#fillData(defaultValue);
+        this.fillData(defaultValue);
     }
 
-    // private fields and methods start from #
-    #fillData(defaultValue) {
+    // private fields and methods start from 
+    fillData(defaultValue) {
         let mx = [];
 
         // loop over rows
