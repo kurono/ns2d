@@ -37,7 +37,7 @@ $$
 
 ## Steps of time-explicit method:
 
-### 1. Diffusion step: 
+### 1. Velocity diffusion step: 
 
 $$
 \frac{\partial \vec{u}}{\partial t} = \nu \nabla^2 \vec{u}
@@ -49,7 +49,7 @@ $$
 \vec{u} - \vec{u}_{\text{prev}} = \tau \cdot \nu \nabla^2 \vec{u}_{prev}
 $$
 
-### 2. Advection step: 
+### 2. Velocity self-advection step: 
 
 $$
 \frac{\partial \vec{u}}{\partial t} = - (\vec{u} \cdot \nabla) \vec{u}
@@ -64,7 +64,7 @@ $$
 ### 3. Poisson equation: 
 
 $$
-\nabla^2 p = \frac{\rho}{\tau} (\nabla \cdot \vec{w})
+\nabla^2 p = \frac{\rho}{\tau} (\nabla \cdot \vec{u})
 $$
 
 FD form:
@@ -79,7 +79,7 @@ $$
 p[i_y,i_x] = \frac{1}{4} \left( p[i_y+1,i_x] + p[i_y-1,i_x] + p[i_y,i_x+1] + p[i_y,i_x-1] - S \right)
 $$
 
-### 4. Apply pressure: 
+### 4. Apply pressure to correct velocity: 
 
 $$
 \vec{u} = \vec{u}_{prev} - \tau \frac{1}{\rho} \nabla p
